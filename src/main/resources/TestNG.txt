@@ -1,0 +1,167 @@
+В testng для проверки есть встроенная библиотека Assertions (проверок). Есть в призентации.
+В основном используют методы: assertEquals и assertTrue. В качестве параметров задают две переменные. Есть третья
+опциональная переменная для сообщения, если тест завалится.
+
+Все тесты должны запускаться с одной командной строки.
+Чтобы воспользоваться командами maven нужно справа вверху открыть Maven - Наш проект - Lifecycle, и выбрать в списке нужную команду.
+в командной строке терминала набираем mvn пробел и команду из списка, напр. mvn test
+Перед выбранной командой запускаются вышестоящие, кроме clean.
+Главное условие - находиться внутри корневой папки.
+Можно запускать в Power Shell.
+
+Если мы что-то в тесте меняем и видим, что результат меняется, то можно:
+1. Руками удалить папку target (удаляться скомпилированные файлы). После этого можно запустить тест и target снова сформируется.
+2. Дать команду mvn clean, которая удалит папку target.
+В maven команды можно передавать через пробел, напр. mvn clean test
+Это делается для того, чтобы подхватились мелкие изменения.
+
+Чтобы тест нормально запускался нужно сконфигурировать наш тестовый запуск. Для этого нужно:
+1. добавить в pom.xml такую зависимость, которая будет правильно компилировать файлы. Называется она maven compiler. В окне поиска
+введем maven compiler plugin. Без него тесты в консоли нормально не запускаются. Открываем в mvnrepository.com
+Ссылка: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin
+Репозиторий хранит саму библиотеку.
+Выбираем последнюю версию. Выделяем и копируем.
+Но эту библиотеку мы вставляем не как обычную зависимость, а зависимость плагина.
+Как добавить плагин с зависимостью. Вкладывается внутрь корневого тега project в любом месте, можно в конце.
+<build></build> - тег позволяет описать список сборки проекта. Внутри этих тегов указываем плагины <plugins></plugins>
+Дальше плагин <plugin></plugin> и между ними вставляем наши зависимости. Нужно сделать как показано. Убрать лишнее
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+            </plugins>
+        </build>
+
+Это позволит более правильно компилировать наш проект.
+Дальше нужно дописать, чтобы внести изменения в конфигурацию тег <configuration></configuration>
+Между ними нужно внести три параметра:
+1) <source></source> - отвечает за то, какая версия компилятора (1.8) будет использоваться при компилировании проекта
+2) <target></target> - какая версия JVM (1.8) будет использоваться для запуска после компиляции.
+3) <encoding></encoding> - указывает maven какую нужно использовать кодировку (UTF-8), для того, чтобы работать с нашим проектом.
+
+В теге <build> нужно также указать <sourceDirectory></sourceDirectory> и указать папку src, т.к. все с чем мы работаем лежит в этой папке
+В итоге:
+<build>
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
+
+Окончательный вид:
+<build>
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+Плагин для компиляции проекта установлен.
+
+2. Нужно установить второй плагин, который будет уметь работать с тестами. Он используется для запуска тестов. В окне поиска вводим
+maven surfire plugin.
+Ссылка: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin
+Берем последний и копируем. Создаем второй плагин <plugin></plugin> между плагинами <plugins></plugins>, вставляем и убираем лишнее.
+Результат ниже:
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M4</version>
+            </plugin>
+
+Дальше обновить изменения в maven, кнопкой справа вверху.
+Затем нужно указать какой конфигурационный файл нужно использовать для запуска тестов. Открываем теги
+<configuration></configuration> и внутри него тег <suiteXmlFiles></suiteXmlFiles> и указываем список файлов для запуска тестов.
+Здесь <suiteXmlFile></suiteXmlFile>. Дальше нужно указать название файла. Но т.к. файлы меняются. поэтому нужно содать переменную,
+которую можно будет переопределять во время запуска тестов.
+
+Для этого выше тега <build> создаем тег <properties></properties>.
+И внутри объявляем какую-то переменную. Можно назвать как хотим, например <suiteXmlFile></suiteXmlFile> и между тегами записать
+какое-то значение. Окончательный вид:
+    <properties>
+       <suiteXmlFile>Lesson6.xml</suiteXmlFile>
+    </properties>
+
+Возвращаемся в <suiteXmlFile></suiteXmlFile> и вставляем переменную ${suiteXmlFile}. Получаем:
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+
+Обновить изменения в maven, кнопкой справа вверху.
+
+
+Дальше нужно создать конфигурационный файл в корне проекта. Согласно настроек создаем lesson6.xml
+Это будет конфигурационный файл для testng. Под каждое задание нужно будет создавать свой конфигурационный файл.
+Чтобы понимать, как заполнять его нужно открыть поисковик и ввести testng и заходим в testng.org, ссылка https://testng.org/doc/
+Заходим в Documentation и находим третий пункт 3 - testng.xml.
+Далее копируем только первую строчку
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+и вставляем в наш конфигурационный файл. Дальше начинаем описывать наш конфигурационный файл. В итоге
+
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="FirstSuite">
+    <test name="FirstTest">
+        <classes>
+            <class name="test.java.Lesson6.TestCat"></class>
+        </classes>
+    </test>
+</suite>
+
+Путь к тестовому файлу указывается через точку.
+
+
+Окончательный вариант изменений в pom.xml:
+    <properties>
+       <suiteXmlFile>Lesson6.xml</suiteXmlFile>
+    </properties>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M4</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.3.0</version>  или  <version>6.8</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>

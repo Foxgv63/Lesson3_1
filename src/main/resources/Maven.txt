@@ -1,0 +1,21 @@
+Maven - менеджер сборки проектов, а также менеджер зависимостей.
+maven test - происходит компиляция, перемещение файлов, сборка проектов, установка зависимостей, прогон тестов, создание отчетов.
+
+Установить Maven – в окне поиска – Maven install. Выбираем сайт  maven.apache.org.
+Далее Download и выбрать скачать бинарный zip архив. Папку распаковать и установить на диске С:
+После установки maven, нужно добавить зависимость в pom.xml. В окне поиска пишем testing maven.
+Выбираем mvnrepository.com. Скачать последнюю версию.
+Затем скопировать строчки и вставить в pom.xml файл между тегами <dependencies> </dependencies>.
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.3.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+После этого обновить зависимости.
+
+
+

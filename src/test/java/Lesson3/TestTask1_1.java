@@ -7,7 +7,7 @@ import static org.testng.Assert.assertEquals;
 
 public class TestTask1_1 {
 
-    @Test() //dataProvider = "dp"
+    @Test()
     public void ComparisonNumbers(){
         Task1_1 task11 = new Task1_1 ();
         int numberToChange = 2;
@@ -15,14 +15,5 @@ public class TestTask1_1 {
         int expectedNumber = numberToChange;
         assertEquals (actualNumber, expectedNumber);
     }
-
-   /* @DataProvider(name = "dp")
-    public Object[][] provider(){
-        return new Object[][] {
-                {-1, 10, 3},
-                {9, 5, 3},
-                {7, -1, 1},
-        };
-    }*/
 
 }

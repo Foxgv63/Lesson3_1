@@ -17,7 +17,7 @@ public class Cat {
 
     public Cat(String name, int age) {
         this();
-        name = name; //this можно опускать
+        this.name = name; //this можно опускать
         this.validateAge(age);
     }
 

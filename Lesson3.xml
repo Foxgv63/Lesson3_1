@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="FirstSuite">
+    <parameter name="directSymbols" value="Hello world!!!"/>
+    <parameter name="reverseSymbols" value="!!!dlrow olleH"/>
+    <test name="FirstTest">
+        <classes>
+            <class name="test.java.Lesson3.TestTask5_1"/>
+        </classes>
+    </test>
+</suite>

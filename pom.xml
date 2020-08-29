@@ -12,6 +12,7 @@
        <suiteXmlFile>Lesson6.xml</suiteXmlFile>
        <xmlFile>lesson3.xml</xmlFile>
        <xmlFl>Lesson8.xml</xmlFl>
+       <xmlFl1>Lesson9.xml</xmlFl1>
 
    </properties>
 
@@ -36,7 +37,8 @@
                     <suiteXmlFiles>
 <!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
 <!--                        <xmlFile>${xmlFile}</xmlFile>-->
-                        <xmlFile>${xmlFl}</xmlFile>
+<!--                        <xmlFile>${xmlFl}</xmlFile>-->
+                        <xmlFile1>${xmlFl1}</xmlFile1>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

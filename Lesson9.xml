@@ -2,8 +2,8 @@
 <suite name="FirstSuite">
     <test name="FirstTest">
         <classes>
-            <class name="test.java.Lesson9.HomeTest1"/>
-            <class name="test.java.Lesson9.HomeTest2"/>
+            <class name="test.java.tests.Test1"/>
+            <class name="test.java.tests.Test2"/>
         </classes>
     </test>
 </suite>

@@ -50,8 +50,6 @@ public class TestL10 {
         notebookPageL10.seachProducers (producerModel);
         List<WebElement> producers = notebookPageL10.getProdusers ();
 
-        this.logger.error ("Comparison of models");
-
         String tmp = "";
         for (WebElement producer: producers) {
             String str = producer.getText ();
@@ -60,10 +58,11 @@ public class TestL10 {
                 int ind1 = str.indexOf (producerModel);
                 int ind2 = ind1 + producerModel.length ();
                 tmp = str.substring (ind1, ind2);
-//                System.out.println (tmp);
             }
             actualProducerModel = tmp;
         }
+
+        this.logger.error ("Comparison of models");
 
         assertEquals(
                 actualProducerModel,

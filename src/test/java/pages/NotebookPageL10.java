@@ -1,5 +1,7 @@
 package test.java.pages;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +14,7 @@ public class NotebookPageL10 {
 
     WebDriver driver;
     WebDriverWait wait;
+    Logger logger = LogManager.getLogger (this.getClass ().getName ());
     By inputMsgBy = By.xpath ("//div[3]//div[1]/input");
     By seachProducersBy = By.cssSelector ("a[href*='/notebooks/c80004/producer=']");
 
@@ -29,6 +32,7 @@ public class NotebookPageL10 {
         driver.findElement (inputMsgBy).sendKeys (producerModel);
         wait.until(ExpectedConditions.numberOfElementsToBe (seachProducersBy, 1));
         driver.findElement (seachProducersBy).click ();
+        this.logger.debug ("Seach producer nootbooks");
         return this;
     }
 

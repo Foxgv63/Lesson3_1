@@ -6,12 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.java.pages.HomePageL10;
 import test.java.pages.NotebookPageL10;
+import test.java.utils.Screenshot;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -79,9 +81,10 @@ public class TestL10 {
         };
     }
 
-
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        Screenshot screenshot = new Screenshot (driver);
+        screenshot.makeScreenshot (result);
         driver.quit();
     }
 

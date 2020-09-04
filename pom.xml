@@ -13,6 +13,7 @@
        <xmlFile>lesson3.xml</xmlFile>
        <xmlFl>Lesson8.xml</xmlFl>
        <xmlFl1>Lesson9.xml</xmlFl1>
+       <xmlFl2>Lesson10.xml</xmlFl2>
 
    </properties>
 
@@ -46,7 +47,8 @@
 <!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
 <!--                        <xmlFile>${xmlFile}</xmlFile>-->
 <!--                        <xmlFile>${xmlFl}</xmlFile>-->
-                        <xmlFile1>${xmlFl1}</xmlFile1>
+<!--                        <xmlFile1>${xmlFl1}</xmlFile1>-->
+                        <xmlFile2>${xmlFl2}</xmlFile2>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -70,6 +72,11 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
         </dependency>
     </dependencies>
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test.java.utils.PropertyLoader;
 
 public class HomePageL10 {
     WebDriver driver;
@@ -23,7 +24,7 @@ public class HomePageL10 {
     }
 
     public HomePageL10 open() {
-        driver.get("https://rozetka.com.ua/");
+        driver.get(PropertyLoader.loadProperty ("baseurl"));
         this.logger.info ("Open Home page");
         return this;
     }

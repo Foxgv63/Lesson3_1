@@ -14,6 +14,7 @@
        <xmlFl>Lesson8.xml</xmlFl>
        <xmlFl1>Lesson9.xml</xmlFl1>
        <xmlFl2>Lesson10.xml</xmlFl2>
+       <xmlFl3>Lesson11.xml</xmlFl3>
 
    </properties>
 
@@ -48,7 +49,8 @@
 <!--                        <xmlFile>${xmlFile}</xmlFile>-->
 <!--                        <xmlFile>${xmlFl}</xmlFile>-->
 <!--                        <xmlFile1>${xmlFl1}</xmlFile1>-->
-                        <xmlFile2>${xmlFl2}</xmlFile2>
+<!--                        <xmlFile2>${xmlFl2}</xmlFile2>-->
+                        <xmlFile3>${xmlFl3}</xmlFile3>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

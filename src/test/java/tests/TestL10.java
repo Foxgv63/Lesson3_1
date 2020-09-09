@@ -2,26 +2,20 @@ package test.java.tests;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.java.pages.HomePageL10;
 import test.java.pages.NotebookPageL10;
+import test.java.pages.TestBaseSetup;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
-public class TestL10 {
-    WebDriver driver;
+public class TestL10 extends TestBaseSetup{
     HomePageL10 homePageL10;
     NotebookPageL10 notebookPageL10;
     Logger logger = LogManager.getLogger (this.getClass ().getName ());
@@ -30,13 +24,7 @@ public class TestL10 {
 
 
     @BeforeMethod
-    public void setUp(ITestContext testContext) {
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
-        driver = new ChromeDriver (options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.MILLISECONDS);
+    public void PageProducer(ITestContext testContext) {
         homePageL10 = new HomePageL10 (driver);
         notebookPageL10 = new NotebookPageL10 (driver);
         testContext.setAttribute("driver", driver);
@@ -44,7 +32,6 @@ public class TestL10 {
 
     @Test (dataProvider = "dp")
     public void Test (String produser) {
-
         String producerModel = produser;
 
         homePageL10
@@ -65,7 +52,7 @@ public class TestL10 {
             actualProducerModel = tmp;
         }
 
-        this.logger.error ("Comparison of models");
+//        this.logger.error ("Comparison of models");
 
         assertEquals(
                 actualProducerModel,
@@ -82,10 +69,6 @@ public class TestL10 {
         };
     }
 
-    @AfterMethod
-    public void tearDown(ITestResult result) {
 
-        driver.quit();
-    }
 
 }

@@ -5,12 +5,11 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.utils.PropertyLoader;
 
-public class HomePageL10 {
+public class HomePageL10 extends BasePage {
+
     WebDriver driver;
-    WebDriverWait wait;
     Logger logger = LogManager.getLogger (this.getClass ().getName ());
     By seachCatalogProduct = By.cssSelector ("button.menu-toggler");
     By seachCompNote = By.xpath ("//ul[@class='menu-categories']//li[@class='menu-categories__item menu-categories__item_state_hovered']/a[contains(@href,'computers-notebooks')]");
@@ -19,8 +18,8 @@ public class HomePageL10 {
 
 
     public HomePageL10 (WebDriver driver) {
+        super (driver);
         this.driver = driver;
-        wait = new WebDriverWait (driver, 10, 100);
     }
 
     public HomePageL10 open() {

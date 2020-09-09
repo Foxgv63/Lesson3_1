@@ -6,14 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class NotebookPageL10 {
+public class NotebookPageL10 extends BasePage {
 
     WebDriver driver;
-    WebDriverWait wait;
     Logger logger = LogManager.getLogger (this.getClass ().getName ());
     By inputMsgBy = By.xpath ("//div[3]//div[1]/input");
     By seachProducersBy = By.cssSelector ("a[href*='/notebooks/c80004/producer=']");
@@ -21,12 +19,11 @@ public class NotebookPageL10 {
 
 
     public NotebookPageL10 (WebDriver driver) {
+        super (driver);
         this.driver = driver;
-        wait = new WebDriverWait (driver, 10, 100);
     }
 
-
-    public NotebookPageL10 seachProducers (String producerModel) {
+       public NotebookPageL10 seachProducers (String producerModel) {
         wait.until (ExpectedConditions.elementToBeClickable (inputMsgBy));
         driver.findElement (inputMsgBy).click ();
         driver.findElement (inputMsgBy).sendKeys (producerModel);

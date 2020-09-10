@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="FirstSuite" parallel="classes" thread-count="2">
+    <listeners>
+        <listener class-name="test.java.utils.Listener"/>
+        <listener class-name="test.java.utils.AnnotationTransformer"/>
+    </listeners>
+    <test name="FirstTest">
+        <classes>
+            <class name="test.java.tests.TestL10"/>
+            <class name="test.java.tests.TestL11"/>
+        </classes>
+
+    </test>
+</suite>

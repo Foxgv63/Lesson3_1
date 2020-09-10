@@ -1,7 +1,7 @@
 package test.java.pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -11,17 +11,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class TestBaseSetup {
+public class TestBaseSetup11 {
     public WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
+        System.setProperty("webdriver.firefox.driver", "geckodriver.exe");
+        FirefoxOptions options = new FirefoxOptions();
         options.addArguments("--disable-notifications");
-//        driver = new ChromeDriver(options);
+//        driver = new FirefoxDriver (options);
         try {
-            driver = new RemoteWebDriver(new URL("http://ec2-18-217-223-209.us-east-2.compute.amazonaws.com:4444/wd/hub"), options);
+            driver = new RemoteWebDriver (new URL ("http://ec2-18-217-223-209.us-east-2.compute.amazonaws.com:4444/wd/hub"), options);
         } catch (MalformedURLException e) {
             e.printStackTrace ();
         }
@@ -34,5 +34,4 @@ public class TestBaseSetup {
     public void tearDown(ITestResult result) {
         driver.quit();
     }
-
 }

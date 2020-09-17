@@ -1,5 +1,6 @@
 package test.java.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -28,6 +29,7 @@ public class HomePageL10 extends BasePage {
         return this;
     }
 
+    @Step("Seach notebook")
     public HomePageL10 seachNotebook() {
         driver.findElement (seachCatalogProduct).click ();
         driver.findElement (seachCompNote).click ();

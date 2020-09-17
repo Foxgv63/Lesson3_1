@@ -15,6 +15,7 @@
        <xmlFl1>Lesson9.xml</xmlFl1>
        <xmlFl2>Lesson10.xml</xmlFl2>
        <xmlFl3>Lesson12.xml</xmlFl3>
+       <xmlFl4>Lesson13.xml</xmlFl4>
        <aspectj.version>1.8.10</aspectj.version>
 
    </properties>
@@ -54,7 +55,8 @@
 <!--                        <xmlFile>${xmlFl}</xmlFile>-->
 <!--                        <xmlFile1>${xmlFl1}</xmlFile1>-->
 <!--                        <xmlFile2>${xmlFl2}</xmlFile2>-->
-                        <xmlFile3>${xmlFl3}</xmlFile3>
+<!--                        <xmlFile3>${xmlFl3}</xmlFile3>-->
+                        <xmlFile4>${xmlFl4}</xmlFile4>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
